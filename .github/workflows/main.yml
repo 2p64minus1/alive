@@ -1,5 +1,8 @@
 name: Build APK
-on: [push, pull_request]
+on:
+  workflow_dispatch: # 增加手动点击触发按钮
+  push:
+    branches: [ main ] # 只要 main 分支有变动（包括你保存此文件）立即触发
 
 jobs:
   build:
@@ -7,8 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 使用更稳定的 Buildozer Action 镜像
       - name: Buildozer Action
-        uses: ArtemSerebriakov/buildozer-action@v1
+        uses: Enteee/buildozer-action@v1.2.2
         id: buildozer
         with:
           command: buildozer android debug
