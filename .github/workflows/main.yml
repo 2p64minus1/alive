@@ -1,8 +1,8 @@
 name: Build APK
-on:
-  workflow_dispatch: # 增加手动点击触发按钮
+on: 
   push:
-    branches: [ main ] # 只要 main 分支有变动（包括你保存此文件）立即触发
+    branches: [ main ]
+  workflow_dispatch: # 这个选项能让你在网页上点按钮直接触发
 
 jobs:
   build:
@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 使用更稳定的 Buildozer Action 镜像
+      # 使用这个更稳定的 Action 替代掉报错的那个
       - name: Buildozer Action
         uses: Enteee/buildozer-action@v1.2.2
         id: buildozer
