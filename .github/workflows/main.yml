@@ -13,7 +13,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python_version: '3.11'
+          python-version: '3.11' # 修正：将下划线改为中划线
 
       - name: Install System Dependencies
         run: |
@@ -25,9 +25,8 @@ jobs:
 
       - name: Build with Buildozer
         run: |
-          # 核心修正：添加路径并强制非交互式运行
           export PATH=$PATH:~/.local/bin
-          # 自动接受 Android SDK 协议，并以非 Root 模式执行
+          # 自动接受协议并静默运行
           yes | buildozer -v android debug
         shell: bash
 
